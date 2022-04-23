@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1000" pageHeight="700" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac99f338-b741-404f-bf5c-cacd929b5595">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select userName, so_du_no from Chi_tiet_tai_khoan where ma_loai_tk = 'LTK2']]>
+	</queryString>
+	<field name="USERNAME" class="java.lang.String"/>
+	<field name="SO_DU_NO" class="java.math.BigDecimal"/>
+	<group name="USERNAME">
+		<groupExpression><![CDATA[$F{USERNAME}]]></groupExpression>
+	</group>
+	<group name="SO_DU_NO">
+		<groupExpression><![CDATA[$F{SO_DU_NO}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="177" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="25" width="769" height="103" uuid="fb12a50b-e96d-48ba-ba50-04c605b8f5d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="30" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Thống kê sức chứa hiện tại của các bệnh viện tại TP.HCM]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="99" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="872" y="15" width="100" height="20" uuid="e8183ba3-b494-4ef3-ab55-f6832977aace"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="317" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="196" y="10" width="601" height="288" uuid="747e7ea6-2b4b-4765-a462-f4a6b844e092"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{SO_DU_NO}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{USERNAME}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{SO_DU_NO}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

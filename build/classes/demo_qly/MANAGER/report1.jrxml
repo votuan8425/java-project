@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="500" pageHeight="550" columnWidth="460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7d806f62-a5f1-43f8-9d03-1675d2d2438b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT trang_thai, COUNT(*) as so_luong FROM Nguoi_lq_covid GROUP BY trang_thai]]>
+	</queryString>
+	<field name="TRANG_THAI" class="java.lang.String"/>
+	<field name="SO_LUONG" class="java.math.BigDecimal"/>
+	<variable name="TRANG_THAI_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{TRANG_THAI}]]></variableExpression>
+	</variable>
+	<group name="TRANG_THAI">
+		<groupExpression><![CDATA[$F{TRANG_THAI}]]></groupExpression>
+	</group>
+	<group name="SO_LUONG">
+		<groupExpression><![CDATA[$F{SO_LUONG}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="71" y="0" width="307" height="79" uuid="83b93aa1-85d0-463c-8289-d6574a1dd173"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="28" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Thống kê trạng thái của người cách ly]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="85" y="0" width="100" height="20" uuid="10f1308e-f2ac-46c3-939c-ae2911386b2a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Trạng Thái]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="0" width="100" height="20" uuid="732be28a-50bf-4631-9177-4c88da580311"/>
+				<textElement>
+					<font fontName="Times New Roman" size="15"/>
+				</textElement>
+				<text><![CDATA[Số Lượng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="85" y="0" width="100" height="20" uuid="92694e4b-6918-4e95-a0be-8af885c31f84"/>
+				<textFieldExpression><![CDATA[$F{TRANG_THAI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="0" width="100" height="20" uuid="5a8ba0af-741b-4575-a1ba-234a6582029f"/>
+				<textFieldExpression><![CDATA[$F{SO_LUONG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="360" y="3" width="100" height="20" uuid="075f90f3-daa5-434c-9720-5a2eb2aebbe6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="364" y="3" width="40" height="20" uuid="45b2975e-8f6c-405c-9485-f7b20cd4c0b7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="112" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="129" y="3" width="218" height="109" uuid="42b139fa-0547-43dd-83e2-909780765990"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{TRANG_THAI}]]></keyExpression>
+					<valueExpression><![CDATA[$F{SO_LUONG}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>
