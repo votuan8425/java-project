@@ -4,6 +4,7 @@
  */
 package User;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -64,6 +65,8 @@ jLabel1 = new javax.swing.JLabel();
 txt_MG = new javax.swing.JTextField();
 jLabel2 = new javax.swing.JLabel();
 jButton1 = new javax.swing.JButton();
+jButton2 = new javax.swing.JButton();
+txt_SL = new javax.swing.JTextField();
 
 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +92,24 @@ jButton1ActionPerformed(evt);
 }
 });
 
+jButton2.setText("Quay lại");
+
+txt_SL.setForeground(new java.awt.Color(153, 153, 153));
+txt_SL.setText("Số lượng");
+txt_SL.addFocusListener(new java.awt.event.FocusAdapter() {
+public void focusGained(java.awt.event.FocusEvent evt) {
+txt_SLFocusGained(evt);
+}
+public void focusLost(java.awt.event.FocusEvent evt) {
+txt_SLFocusLost(evt);
+}
+});
+txt_SL.addKeyListener(new java.awt.event.KeyAdapter() {
+public void keyTyped(java.awt.event.KeyEvent evt) {
+txt_SLKeyTyped(evt);
+}
+});
+
 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 getContentPane().setLayout(layout);
 layout.setHorizontalGroup(
@@ -96,32 +117,43 @@ layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 .addGroup(layout.createSequentialGroup()
 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 .addGroup(layout.createSequentialGroup()
-.addGap(200, 200, 200)
+.addGap(37, 37, 37)
+.addComponent(jButton2)
+.addGap(84, 84, 84)
 .addComponent(jLabel1))
 .addGroup(layout.createSequentialGroup()
 .addGap(24, 24, 24)
-.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
+.addContainerGap(31, Short.MAX_VALUE))
 .addGroup(layout.createSequentialGroup()
 .addGap(45, 45, 45)
 .addComponent(jLabel2)
 .addGap(18, 18, 18)
 .addComponent(txt_MG, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-.addGap(18, 18, 18)
-.addComponent(jButton1)))
-.addContainerGap(31, Short.MAX_VALUE))
+.addGap(32, 32, 32)
+.addComponent(txt_SL, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+.addComponent(jButton1)
+.addGap(64, 64, 64))
 );
 layout.setVerticalGroup(
 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 .addGroup(layout.createSequentialGroup()
+.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+.addGroup(layout.createSequentialGroup()
 .addGap(41, 41, 41)
-.addComponent(jLabel1)
+.addComponent(jLabel1))
+.addGroup(layout.createSequentialGroup()
+.addGap(26, 26, 26)
+.addComponent(jButton2)))
 .addGap(34, 34, 34)
 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 .addComponent(txt_MG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 .addComponent(jLabel2)
-.addComponent(jButton1))
+.addComponent(jButton1)
+.addComponent(txt_SL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 .addGap(27, 27, 27))
 );
 
@@ -153,6 +185,34 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
        JOptionPane.showMessageDialog(this,e.getMessage());
 
 }}//GEN-LAST:event_jButton1ActionPerformed
+
+private void txt_SLFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_SLFocusGained
+
+   if(txt_SL.getText().equals("Số lượng"))
+{
+      txt_SL.setText("");
+      txt_SL.setForeground(new Color(153,153,153));
+}
+
+}//GEN-LAST:event_txt_SLFocusGained
+
+private void txt_SLFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_SLFocusLost
+
+   if(txt_SL.getText().equals(""))
+{
+      txt_SL.setText("Số lượng");
+      txt_SL.setForeground(new Color(153,153,153));
+}
+}//GEN-LAST:event_txt_SLFocusLost
+
+private void txt_SLKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_SLKeyTyped
+
+    char c= evt.getKeyChar();
+    if(!Character.isDigit(c)){
+       evt.consume();
+}
+
+}//GEN-LAST:event_txt_SLKeyTyped
 
 /**
  * @param args the command line arguments
@@ -191,10 +251,12 @@ new Buy_User().setVisible(true);
 
 // Variables declaration - do not modify//GEN-BEGIN:variables
 private javax.swing.JButton jButton1;
+private javax.swing.JButton jButton2;
 private javax.swing.JLabel jLabel1;
 private javax.swing.JLabel jLabel2;
 private javax.swing.JScrollPane jScrollPane1;
 private javax.swing.JTable tblGNY;
 private javax.swing.JTextField txt_MG;
+private javax.swing.JTextField txt_SL;
 // End of variables declaration//GEN-END:variables
 }
